@@ -11,8 +11,20 @@ FROM customer c
 WHERE f.title = 'ACE GOLDFINGER';
 
 
+# Below is a subquery that uses an inner join, inside a containing query to select all film titles that fall under the category of "ACTION".
+
+SELECT title
+FROM film 
+	WHERE film_id IN 
+	(SELECT fc.film_id
+	FROM film_category fc
+		INNER JOIN category c 
+        	ON c.category_id = fc.category_id
+        	WHERE c.name = 'ACTION');
+
+
 # Below is an outer join which will display in the output each films' title and id regardless of whether it was rented by any customer or not
-# as there will be some NULL values in the first_name and last_name columns for films that were never rented by any customer
+# as there will be some NULL values in the first_name and last_name columns for films that were never rented by any customer.
 
 SELECT f.film_id, f.title, c.first_name, c.last_name
 FROM film f 
@@ -22,3 +34,7 @@ FROM film f
     ON r.inventory_id = i.inventory_id
     LEFT OUTER JOIN customer c
     ON c.customer_id = r.customer_id;
+
+
+
+        
