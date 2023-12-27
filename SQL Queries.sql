@@ -5,11 +5,11 @@
 SELECT c.first_name, c.last_name, c.email
 FROM customer c 
 	INNER JOIN rental r
-    ON c.customer_id = r.customer_id
-    INNER JOIN inventory i 
-    ON i.inventory_id = r.inventory_id
-    INNER JOIN film_text f
-    ON f.film_id = i.film_id
+    	ON c.customer_id = r.customer_id
+    	INNER JOIN inventory i 
+    	ON i.inventory_id = r.inventory_id
+    	INNER JOIN film_text f
+    	ON f.film_id = i.film_id
 WHERE f.title = 'ACE GOLDFINGER';
 
 
@@ -17,11 +17,11 @@ WHERE f.title = 'ACE GOLDFINGER';
 
 SELECT title
 FROM film 
-	WHERE film_id IN 
-	(SELECT fc.film_id
-	FROM film_category fc
-		INNER JOIN category c 
-		ON c.category_id = fc.category_id
+WHERE film_id IN 
+(SELECT fc.film_id
+FROM film_category fc
+	INNER JOIN category c 
+	ON c.category_id = fc.category_id
 	WHERE c.name = 'ACTION');
 
 
@@ -31,8 +31,8 @@ FROM film
 SELECT f.film_id, f.title, c.first_name, c.last_name
 FROM film f 
 	LEFT OUTER JOIN inventory i 
-    ON i.film_id = f.film_id
-    LEFT OUTER JOIN rental r
-    ON r.inventory_id = i.inventory_id
-    LEFT OUTER JOIN customer c
-    ON c.customer_id = r.customer_id;
+    	ON i.film_id = f.film_id
+    	LEFT OUTER JOIN rental r
+    	ON r.inventory_id = i.inventory_id
+    	LEFT OUTER JOIN customer c
+	ON c.customer_id = r.customer_id;
