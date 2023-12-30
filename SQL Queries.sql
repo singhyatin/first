@@ -1,5 +1,6 @@
 # I will be writing queries for the Sakila database that can be found in MySQL 8.0.35.
 
+	
 # The query below will find all customers that can be considered to be fans for action category films as they have rented more than 4 of such films.
 # I will be using conditional logic (Searched Case Expression) along with inner joins and an aggregate function (count).
 	
@@ -21,8 +22,6 @@ FROM customer c2
 GROUP BY c2.customer_id;
 
 
-
-	
 # Below is an inner join that will display the first and last name of each customer along with their email that rented the film "ACE GOLDFINGER". A total of four tables will be used.
 
 SELECT c.first_name, c.last_name, c.email
