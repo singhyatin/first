@@ -59,3 +59,5 @@ FROM film f
     	ON r.inventory_id = i.inventory_id
     	LEFT OUTER JOIN customer c
 	ON c.customer_id = r.customer_id;
+
+
