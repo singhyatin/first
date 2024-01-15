@@ -1,0 +1,41 @@
+'This script conisists of a custom user defined function and a sub procedure, both written in VBA.
+
+
+'The Profit_PU is a custom user defined function which returns the profit per unit sold for a particular state.
+'It has one parameter which is called "Name" to which the name of a state must be given as a string with only the first letter capitalized and no spaces before or after the name.
+'The Excel file that this function was written for can be downloaded from the link mentioned below.
+'Download from https://github.com/singhyatin/Data-Analysis-Projects/blob/main/4)%20Excel%20Superstore%20Project.xlsx
+
+Function Profit_PU(Name)
+        
+    Dim i As Integer
+    Dim Total_Profit As Long
+    Dim Total_Quantity As Integer
+    
+    Total_Profit = 0
+    Total_Quantity = 0
+    
+    For i = 1 To Range("D2:D45").Cells.Count
+        If Range("D2:D45").Cells(i) = Name Then    ' To check if the value in the cell is the same as the name given as an argument to the function.
+            Total_Profit = Total_Profit + Range("L2:L45").Cells(i)    ' If true then add the value of the cell in the Profit column which falls in the same row.
+            Total_Quantity = Total_Quantity + Range("J2:J45").Cells(i)    ' Also add the value of the cell in the Quantity column which falls in the same row.
+        End If
+    Next i
+
+Profit_PU = Total_Profit / Total_Quantity    ' Dividing the total profit of the state by the total quantity sold for that state.
+        
+End Function
+
+
+'Below is a sub procedure written in VBA that rounds each numeric value in a worksheet to two decimal places.
+'You can try it on one of your own files or download a sample file from the link mentioned below.
+'Download from https://docs.google.com/spreadsheets/d/1veGz1YL4fkcyZbH3gqzgcisBosCoT08F/edit?usp=sharing&ouid=108818556327145993257&rtpof=true&sd=true
+
+Sub Rounding_two()
+    Dim i As Integer
+    For i = 1 To Range("A1").CurrentRegion.Cells.Count
+        If IsNumeric(Range("A1").CurrentRegion.Cells(i)) Then   ' Checking to see if the cell contains a numeric value.
+            Range("A1").CurrentRegion.Cells(i) = Round(Range("A1").CurrentRegion.Cells(i), 2)   ' If true, then round the numeric value to two decimal places.
+        End If
+    Next i
+End Sub
