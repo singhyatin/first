@@ -25,7 +25,7 @@ GROUP BY c2.customer_id;
 # Below is a query that uses a window function to find the difference between the sum of payments for a current month and a previous month and rounding it to two decimal places.
 
 SELECT MONTH(payment_date) payment_month, sum(amount) month_total,
-	round(sum(amount) - LAG(sum(amount))
+	round(sum(amount) - LAG(sum(amount),1)
 		OVER (ORDER BY MONTH(payment_date)), 2) Previous_Month_Difference
 FROM payment
 GROUP BY MONTH(payment_date);
